@@ -1,5 +1,6 @@
 package com.androidkun.xtablayout;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -14,21 +15,6 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.TabLayout;
-import android.support.v4.util.Pools;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.TextViewCompat;
-import android.support.v7.app.ActionBar;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -39,7 +25,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -49,7 +34,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.util.Pools;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.TextViewCompat;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.androidkun.xtablayoutlibrary.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -59,10 +60,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import static android.R.attr.maxWidth;
-import static android.support.v4.view.ViewPager.SCROLL_STATE_DRAGGING;
-import static android.support.v4.view.ViewPager.SCROLL_STATE_IDLE;
-import static android.support.v4.view.ViewPager.SCROLL_STATE_SETTLING;
-import static android.support.v7.widget.AppCompatDrawableManager.get;
+import static androidx.appcompat.widget.ResourceManagerInternal.get;
+import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_DRAGGING;
+import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_IDLE;
+import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_SETTLING;
 
 /**
  * Created by Kun on 2016/12/20.
@@ -713,7 +714,6 @@ public class XTabLayout extends HorizontalScrollView {
 
     /**
      * Sets the text colors for the different states (normal, selected) used for the tabs.
-     *
      */
     public void setTabTextColors(int normalColor, int selectedColor) {
         setTabTextColors(createColorStateList(normalColor, selectedColor));
@@ -1320,6 +1320,7 @@ public class XTabLayout extends HorizontalScrollView {
          * @param resId A resource ID referring to the icon that should be displayed
          * @return The current instance for call chaining
          */
+        @SuppressLint("RestrictedApi")
         @NonNull
         public XTabLayout.Tab setIcon(@DrawableRes int resId) {
             if (mParent == null) {
@@ -1937,8 +1938,9 @@ public class XTabLayout extends HorizontalScrollView {
                 right = selectedTitle.getRight();
 
                 int haftWidth = 0;
-                if (mSelectedIndicatorWidth == 0
-                        && !xTabDividerWidthWidthText) mSelectedIndicatorWidth = maxWidth;
+                if (mSelectedIndicatorWidth == 0 && !xTabDividerWidthWidthText) {
+                    mSelectedIndicatorWidth = maxWidth;
+                }
 
                /* int maxWidth = mIndicatorRight - mIndicatorLeft;
                 if (maxWidth > mSelectedIndicatorWidth) {

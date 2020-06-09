@@ -18,7 +18,8 @@ package com.androidkun.xtablayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.design.R;
+
+import com.androidkun.xtablayoutlibrary.R;
 
 class ThemeUtils {
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    sources>
     <declare-styleable name="XTabLayout">
         <attr name="xTabIndicatorHeight" format="dimension"/>
         <attr name="xTabIndicatorWidth" format="dimension"/>

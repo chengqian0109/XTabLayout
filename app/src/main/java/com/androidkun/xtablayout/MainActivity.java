@@ -1,11 +1,11 @@
 package com.androidkun.xtablayout;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 fragments.add(new Fragment1());
             }
         }
-        FragmentAdapter adatper = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPager.setAdapter(adatper);
+        viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(4);
         //将TabLayout和ViewPager关联起来。
         final XTabLayout tabLayout = (XTabLayout) findViewById(R.id.xTablayout);
